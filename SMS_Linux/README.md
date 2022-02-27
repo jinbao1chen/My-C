@@ -1,4 +1,4 @@
-# My-C
+# 学生信息管理系统-Linux
 Student Management System（SMS）
 
 # 练习 1
@@ -6,6 +6,48 @@ Student Management System（SMS）
 
 # 练习 2
 写一个简单的学生管理系统-单向链表版，实现基本信息的“增删改查”功能，掌握链表的使用。
+
+# 练习 3
+在练习2的基础上，加上sqlite3数据库，可以本地保存数据不丢失
+
+# （1）sqlite3 数据库
+#安装数据库 ubuntu+sqlite3
+
+apt-get install sqlite3 libsqlite3-dev
+
+#使用
+/*
+ubuntu@VM-8-5-ubuntu:~$ sqlite3
+SQLite version 3.22.0 2018-01-22 18:45:57
+Enter ".help" for usage hints.
+Connected to a transient in-memory database.
+Use ".open FILENAME" to reopen on a persistent database.
+sqlite>
+sqlite> create table if not exists student (id integer, age integer, name text, tel text);
+
+ubuntu@VM-8-5-ubuntu:~/Cstudy$ sqlite3 student.db
+SQLite version 3.22.0 2018-01-22 18:45:57
+Enter ".help" for usage hints.
+sqlite>
+sqlite> .table
+student
+sqlite> select * from student;
+1|11|阿|11111111111
+*/
+
+# 编译
+gcc StudentManagementSystem_sqlite3.c -o SMS_sqlite3 -lsqlite3
+#Makefile编译
+TARGET:=./destdir/SMS_sqlite3
+OBJS:=StudentManagementSystem_sqlite3.o
+LIBS:=-lsqlite3
+
+$(TARGET):$(OBJS)
+    $(CC) $^ -o $@ $(LIBS)
+
+clean:
+    $(RM) $(TARGET) $(OBJS)
+.PHONY:clean
 
 ------------------------------------------------------------------------------------------------
 # Makefile
