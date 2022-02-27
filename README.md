@@ -1,5 +1,5 @@
 # My-C
-Student Management System（Array practice）
+Student Management System（SMS）
 
 # 练习 1
 写一个简单的学生管理系统-数组版，实现基本信息的“增删改查”功能，掌握指针数组的使用。
@@ -32,23 +32,33 @@ CPPFLAGS	C预编译器的选项，无默认值
 CXX		C编译器的选项，无默认值
 
 #同目录下文件编译
+
 #例如编译 “StudentManagementSystem.c”
+
 /************************第一版Makefile********************************/
+
 StudentManagementSystem:StudentManagementSystem.c
+
     gcc StudentManagementSystem.c -o StudentManagementSystem
 
 /************************第二版Makefile*******************************/
+
 TARGET:=./destdir/StudentMS
 
 #依赖文件
+
 OBJS:=StudentManagementSystem.o
 
 #编译
+
 $(TARGET):$(OBJS)
+
     $(CC) $^ -o $@
 
-
 #清理
+
 clean:
+
     $(RM) $(TARGET) $(OBJS)
+
 .PHONY:clean
